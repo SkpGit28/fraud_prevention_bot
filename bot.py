@@ -92,6 +92,19 @@ def receive_whatsapp():
 
 # ===== INTENT DETECTION =====
 def detect_intent(message):
+    msg_lower = message.lower().strip()
+    
+    # Handle number inputs (1, 2, 3, 4)
+    if msg_lower in ['1', 'check', 'check number', 'is this', 'safe', 'number', 'verify']:
+        return 'check_number'
+    elif msg_lower in ['2', 'scammed', 'i\'ve been scammed', 'lost', 'fraud', 'recover', 'recovery']:
+        return 'recovery'
+    elif msg_lower in ['3', 'report', 'report scam', 'alert', 'suspicious']:
+        return 'report'
+    elif msg_lower in ['4', 'help', 'menu', '/start', 'start']:
+        return 'help'
+    return 'unknown'
+
     msg_lower = message.lower()
     
     if any(w in msg_lower for w in ['check', 'is this', 'safe', 'number', 'verify']):
